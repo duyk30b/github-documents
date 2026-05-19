@@ -1,0 +1,1 @@
+export { default as VueModal } from './VueModal.vue'

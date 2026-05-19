@@ -1,0 +1,1 @@
+export { default as VueDivider } from './VueDivider.vue'

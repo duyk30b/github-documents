@@ -1,0 +1,83 @@
+[
+  {
+    "title": "Language",
+    "folderName": "language",
+    "parentPath": "",
+    "folderPath": "/language",
+    "level": 1,
+    "order": 1,
+    "categoryList": [
+      {
+        "title": "Design Pattern",
+        "folderName": "design-pattern",
+        "parentPath": "/language",
+        "folderPath": "/language/design-pattern",
+        "level": 2,
+        "order": 1,
+        "categoryList": []
+      }
+    ]
+  },
+  {
+    "title": "Operating Systems",
+    "folderName": "operating-systems",
+    "parentPath": "",
+    "folderPath": "/operating-systems",
+    "level": 1,
+    "order": 2,
+    "categoryList": [
+      {
+        "title": "Windows",
+        "folderName": "windows",
+        "parentPath": "/operating-systems",
+        "folderPath": "/operating-systems/windows",
+        "level": 2,
+        "order": 1,
+        "categoryList": []
+      },
+      {
+        "title": "MacOS",
+        "folderName": "macos",
+        "parentPath": "/operating-systems",
+        "folderPath": "/operating-systems/macos",
+        "level": 2,
+        "order": 2,
+        "categoryList": []
+      },
+      {
+        "title": "Linux",
+        "folderName": "linux",
+        "parentPath": "/operating-systems",
+        "folderPath": "/operating-systems/linux",
+        "level": 2,
+        "order": 3,
+        "categoryList": []
+      }
+    ]
+  },
+  {
+    "title": "Database",
+    "folderName": "database",
+    "parentPath": "",
+    "folderPath": "/database",
+    "level": 1,
+    "order": 3,
+    "categoryList": [
+      {
+        "title": "MongoDB",
+        "folderName": "mongodb",
+        "parentPath": "/database",
+        "folderPath": "/database/mongodb",
+        "level": 2,
+        "order": 1,
+        "categoryList": []
+      },
+      {
+        "title": "SQL",
+        "folderName": "sql",
+        "order": 1,
+        "categoryList": []
+      }
+    ]
+  }
+]

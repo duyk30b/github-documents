@@ -1,0 +1,193 @@
+.vue-input {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border: 1px solid var(--c-border);
+  outline: none;
+  border-radius: 10px;
+  display: flex;
+  align-items: stretch;
+  background: var(--c-surface-1);
+
+  &:focus-within {
+    border-color: var(--c-primary);
+    box-shadow: 0 0 0 3px color-mix(in srgb, var(--c-primary) 20%, transparent);
+  }
+
+  &:not(.disabled):hover {
+    border-color: color-mix(in srgb, var(--c-primary) 68%, var(--c-border));
+
+    // đang có lỗi icon-clear trên iphone (click 2 lần mới focus được vào ô input)
+    // .icon-append {
+    //   .icon-blur {
+    //     display: none !important;
+    //   }
+
+    //   .icon-clear-hover {
+    //     display: block !important;
+    //   }
+
+    //   &:hover {
+    //     .icon-clear-hover {
+    //       display: none !important;
+    //     }
+
+    //     .icon-clear-blur {
+    //       display: block !important;
+    //     }
+    //   }
+    // }
+  }
+
+  &.disabled {
+    background-color: color-mix(in srgb, var(--c-surface-2) 80%, #aaa 20%);
+    border-color: var(--c-border);
+
+    &:hover {
+      border-color: var(--c-border);
+    }
+
+    .append {
+      opacity: 0.8;
+    }
+
+    .prepend {
+      opacity: 0.8;
+    }
+
+    .clear {
+      cursor: not-allowed !important;
+    }
+  }
+
+  .input-area {
+    flex: 1;
+    position: relative;
+    display: flex;
+    align-items: center;
+
+    input,
+    textarea {
+      width: 100%;
+      padding: 4px 12px 4px 12px;
+      outline: none;
+      border: none;
+      background: transparent;
+      color: var(--c-text);
+
+      &::placeholder {
+        color: var(--c-text-soft);
+        opacity: 0.92;
+      }
+
+      &:disabled {
+        cursor: not-allowed;
+        background-color: color-mix(in srgb, var(--c-surface-2) 80%, #aaa 20%);
+        color: var(--c-text-soft);
+        opacity: 1;
+      }
+    }
+
+    input::placeholder {
+      font-size: 14px;
+    }
+  }
+
+  .icon-prepend {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--c-surface-2);
+    border-right: 1px solid var(--c-border);
+  }
+
+  .icon-append {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0.6;
+    padding: 0 0.5rem 0 0;
+
+    .icon-blur {
+      display: block;
+    }
+
+    .icon-clear-hover {
+      display: none;
+    }
+
+    .icon-clear-blur {
+      display: block;
+    }
+
+    &:hover {
+      cursor: pointer;
+
+      .icon-clear-hover {
+        display: block;
+      }
+
+      .icon-clear-blur {
+        display: none;
+      }
+    }
+  }
+
+  .append {
+    padding: 0 12px;
+    border-left: 1px solid var(--c-border);
+    white-space: nowrap;
+    display: flex;
+    align-items: center;
+    background-color: var(--c-surface-2);
+    color: var(--c-text-soft);
+    font-size: 0.9em;
+  }
+
+  .prepend {
+    padding: 0 12px;
+    border-right: 1px solid var(--c-border);
+    white-space: nowrap;
+    display: flex;
+    align-items: center;
+    background-color: var(--c-surface-2);
+    color: var(--c-text-soft);
+    font-size: 0.9em;
+  }
+
+  .options {
+    position: absolute;
+    z-index: 30;
+    background-color: var(--c-surface-1);
+    top: 100%;
+    left: -1px;
+    right: -1px;
+    border: 1px solid var(--c-border);
+    border-radius: 0 0 10px 10px;
+    box-shadow: var(--shadow-soft);
+    overflow-y: auto;
+
+    .item-option {
+      position: relative;
+      padding: 6px 12px;
+      cursor: pointer;
+      user-select: none;
+      border-bottom: 1px solid var(--c-border);
+
+      &.active {
+        background-color: color-mix(in srgb, var(--c-primary) 18%, transparent) !important;
+        color: var(--c-primary);
+      }
+
+      &:hover {
+        background-color: var(--c-surface-2);
+      }
+
+      .item-text {
+        text-overflow: ellipsis;
+        overflow: hidden;
+        white-space: nowrap;
+      }
+    }
+  }
+}

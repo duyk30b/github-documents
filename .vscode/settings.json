@@ -1,0 +1,18 @@
+{
+  "window.title": "${rootName}",
+  "explorer.compactFolders": false,
+  "workbench.tree.indent": 16,
+  "workbench.editor.wrapTabs": true,
+  "git.allowForcePush": true,
+  "files.autoSave": "afterDelay",
+  "files.eol": "\n",
+  "editor.formatOnSave": true,
+  "editor.suggest.insertMode": "replace",
+  "editor.codeActionsOnSave": {
+    "source.organizeImports": "explicit"
+  },
+  "cSpell.words": ["antd"],
+  "search.exclude": {
+    "docs/**": true
+  },
+}
