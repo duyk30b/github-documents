@@ -8,17 +8,17 @@ export const useCategoryStore = defineStore('category_store', {
     categoryMenuTree: [],
   }),
   actions: {
-    async fetchCategoryMenuTreeRaw(config?: { noCache?: boolean }) {
+    async fetchCategoryMenuTreeRaw(config?: { cache?: RequestCache }) {
       const response = await GithubApi.getFile({
         path: ESString.joinPath(FOLDER_ROOT, CATEGORIES_MENU_NAME),
-        params: { time: config?.noCache ? Date.now().toString() : '' }, // tạo time giả tránh cache
+        cache: config?.cache,
       })
       const categoryMenuRawList: CategoryMenuRaw[] = JSON.parse(response.content)
       return { categoryMenuRawList, sha: response.sha }
     },
 
-    async loadCategoryMenuTree(config?: { noCache?: boolean }) {
-      const { categoryMenuRawList, sha } = await this.fetchCategoryMenuTreeRaw({ noCache: config?.noCache })
+    async loadCategoryMenuTree(config?: { cache?: RequestCache }) {
+      const { categoryMenuRawList, sha } = await this.fetchCategoryMenuTreeRaw({ cache: config?.cache })
       this.categoryMenuTree = categoryMenuRawList.map((raw) => {
         return CategoryMenu.fromRaw(raw, '', 1)
       })
@@ -66,7 +66,7 @@ export const useCategoryStore = defineStore('category_store', {
     async createCategoryMenu(categoryInput: CategoryMenu) {
       const { title, folderName, order, parentPath, folderPath, level } = categoryInput
 
-      const catMenuFetchResponse = await this.fetchCategoryMenuTreeRaw({ noCache: true })
+      const catMenuFetchResponse = await this.fetchCategoryMenuTreeRaw({ cache: 'reload' })
       const segmentList = parentPath.split('/').filter(Boolean)
       let categoryRawList = catMenuFetchResponse.categoryMenuRawList
       segmentList.forEach((segment) => {
@@ -99,7 +99,7 @@ export const useCategoryStore = defineStore('category_store', {
       }
       const { title, folderName, order, parentPath, folderPath } = categoryTo
 
-      const catMenuFetchResponse = await this.fetchCategoryMenuTreeRaw({ noCache: true })
+      const catMenuFetchResponse = await this.fetchCategoryMenuTreeRaw({ cache: 'reload' })
       const segmentList = parentPath.split('/').filter(Boolean)
       let categoryRawListCurrent = catMenuFetchResponse.categoryMenuRawList
       segmentList.forEach((segment) => {
@@ -131,7 +131,7 @@ export const useCategoryStore = defineStore('category_store', {
         throw new Error('Cannot move category to the same folder path')
       }
 
-      const catMenuFetchResponse = await this.fetchCategoryMenuTreeRaw({ noCache: true })
+      const catMenuFetchResponse = await this.fetchCategoryMenuTreeRaw({ cache: 'reload' })
 
       const segmentListOrigin = categoryOrigin.parentPath.split('/').filter(Boolean)
       let categoryRawListOrigin = catMenuFetchResponse.categoryMenuRawList
@@ -182,7 +182,7 @@ export const useCategoryStore = defineStore('category_store', {
     async deleteCategoryMenu(categoryInput: CategoryMenu) {
       const { folderPath, title, parentPath, folderName } = categoryInput
 
-      const catMenuFetchResponse = await this.fetchCategoryMenuTreeRaw({ noCache: true })
+      const catMenuFetchResponse = await this.fetchCategoryMenuTreeRaw({ cache: 'reload' })
       const segmentList = parentPath.split('/').filter(Boolean)
       let currentCategoryList = catMenuFetchResponse.categoryMenuRawList
       segmentList.forEach((segment) => {

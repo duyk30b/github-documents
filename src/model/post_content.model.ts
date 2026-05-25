@@ -2,7 +2,7 @@ export class PostContent {
   body: string
   metadata: {
     title: string
-    publishedAt: number
+    publishedAt: string
     order: number
   }
   postInfo: {
@@ -17,7 +17,7 @@ export class PostContent {
     ins.body = s?.body || ''
     ins.metadata = {
       title: s?.metadata?.title || '',
-      publishedAt: s?.metadata?.publishedAt || 0,
+      publishedAt: s?.metadata?.publishedAt || '',
       order: s?.metadata?.order || 0,
     }
     ins.postInfo = {
@@ -39,7 +39,7 @@ export class PostContent {
     const target: PostContent = Object.assign(new PostContent(), cleaned)
     target.metadata = {
       title: source.metadata?.title || '',
-      publishedAt: source.metadata?.publishedAt || 0,
+      publishedAt: source.metadata?.publishedAt || '',
       order: source.metadata?.order || 0,
     }
     target.postInfo = {

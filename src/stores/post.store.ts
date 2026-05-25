@@ -64,7 +64,7 @@ export const usePostStore = defineStore('post_store', {
           body,
           metadata: {
             title: metadata.title || '',
-            publishedAt: Number(metadata.publishedAt) || 0,
+            publishedAt: metadata.publishedAt,
             order: Number(metadata.order) || 0,
           },
           postInfo: {
@@ -95,6 +95,9 @@ export const usePostStore = defineStore('post_store', {
         publishedAt: postContent.metadata.publishedAt,
       })
       postMenuRawList.sort((a, b) => a.order - b.order)
+      postMenuRawList.forEach((raw, index) => {
+        raw.order = index + 1 // reassign order to avoid conflict
+      })
 
       const content = MarkdownRenderer.addMetadata({
         body: postContent.body,
@@ -137,6 +140,9 @@ export const usePostStore = defineStore('post_store', {
       postMenuRawList[findIndex].order = postContentUpdate.metadata.order
       postMenuRawList[findIndex].publishedAt = postContentUpdate.metadata.publishedAt
       postMenuRawList.sort((a, b) => a.order - b.order)
+      postMenuRawList.forEach((raw, index) => {
+        raw.order = index + 1 // reassign order to avoid conflict
+      })
 
       const content = MarkdownRenderer.addMetadata({
         body: postContentUpdate.body,
@@ -172,6 +178,9 @@ export const usePostStore = defineStore('post_store', {
         throw new Error(`Post "${filePath}" not found for delete`)
       }
       postMenuRawList.splice(findIndex, 1)
+      postMenuRawList.forEach((raw, index) => {
+        raw.order = index + 1 // reassign order to avoid conflict
+      })
 
       await GithubApi.deleteFile({
         path: ESString.joinPath(FOLDER_ROOT, filePath),

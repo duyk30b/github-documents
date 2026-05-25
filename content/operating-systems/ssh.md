@@ -1,10 +1,8 @@
 ---
 title: SSH
-publishedAt: 0
+publishedAt: 1779667790732
 order: 0
 ---
-
-# SSH
 
 ## I. Tạo cặp SSH key
 

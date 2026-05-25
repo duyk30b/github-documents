@@ -41,7 +41,7 @@ watch(
       const postMenuList = await postStore.getPostMenuListByFolderPath(folderPath)
       postMenuList.forEach((postInfo) => {
         menu.value.push({
-          label: postInfo.title,
+          label: `${postInfo.order}. ${postInfo.title}`,
           to: { name: ROUTER_NAME.CONTENT, params: { pathMatch: postInfo.filePath.split('/').filter(Boolean) } },
           children: [],
         })

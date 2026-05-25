@@ -10,7 +10,7 @@ const modalCategoryUpsert = ref<InstanceType<typeof ModalCategoryUpsert>>()
 const categoryStore = useCategoryStore()
 
 const startFetchData = async () => {
-  await categoryStore.loadCategoryMenuTree({ noCache: true })
+  await categoryStore.loadCategoryMenuTree({ cache: 'reload' })
 }
 
 onMounted(async () => {

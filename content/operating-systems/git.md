@@ -4,10 +4,9 @@ publishedAt: 1779622120765
 order: 0
 ---
 
-# Git
 
 ## 1. Cài đặt Git
-* Download và cài đặt Git-scm
+* Download and install Git-scm
 <a href="https://git-scm.com/" rel="noopener" target="_blank">https://git-scm.com/</a>
 <img src="https://git-scm.com/images/logo@2x.png" alt="" />
 

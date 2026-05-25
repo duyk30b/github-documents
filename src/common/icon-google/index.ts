@@ -3,6 +3,7 @@
 export { default as IconAddCircle } from './IconAddCircle.vue'
 export { default as IconCloudUpload } from './IconCloudUpload.vue'
 export { default as IconComputer } from './IconComputer.vue'
+export { default as IconContrast } from './IconContrast.vue'
 export { default as IconDelete } from './IconDelete.vue'
 export { default as IconDoorOpen } from './IconDoorOpen.vue'
 export { default as IconDownload } from './IconDownload.vue'
@@ -22,4 +23,3 @@ export { default as IconUndo } from './IconUndo.vue'
 export { default as IconUpload } from './IconUpload.vue'
 export { default as IconVisibility } from './IconVisibility.vue'
 export { default as IconWarehouse } from './IconWarehouse.vue'
-

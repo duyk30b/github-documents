@@ -9,6 +9,7 @@ import { useThemeStore } from '../../stores/theme.store'
 import BugDevelopment from '../app_components/BugDevelopment.vue'
 import AppHeaderMenu from './AppHeaderMenu.vue'
 import ModalLogin from './ModalLogin.vue'
+import { IconContrast } from '../../common/icon-google'
 
 const modalLogin = ref<InstanceType<typeof ModalLogin>>()
 
@@ -53,7 +54,9 @@ const searchResults = ref<{ id: number; title: string; excerpt: string }[]>([])
         </div>
       </div>
 
-      <button class="btn" @click="themeStore.toggleTheme()">{{ themeStore.mode === 'dark' ? 'Light' : 'Dark' }}</button>
+      <div @click="themeStore.toggleTheme()" style="cursor: pointer">
+        <IconContrast :width="32" :height="32" />
+      </div>
       <button v-if="!authStore.isAuthenticated" class="btn primary" @click="modalLogin?.openModal()">
         GitHub Login
       </button>

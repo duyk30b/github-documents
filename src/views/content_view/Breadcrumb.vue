@@ -35,11 +35,13 @@ watch(
 <template>
   <nav class="breadcrumb" aria-label="Breadcrumb">
     <ol>
-      <li v-for="(item, index) in breadcrumbItems" :key="`${item.label}-${index}`">
-        <RouterLink v-if="!item.to" to="/">
+      <li>
+        <RouterLink to="/">
           <IconHome />
         </RouterLink>
-        <RouterLink v-else :to="item.to">{{ item.label }}</RouterLink>
+      </li>
+      <li v-for="(item, index) in breadcrumbItems" :key="`${item.label}-${index}`">
+        <RouterLink :to="item.to">{{ item.label }}</RouterLink>
       </li>
     </ol>
   </nav>

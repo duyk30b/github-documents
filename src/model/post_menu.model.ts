@@ -4,14 +4,14 @@ export type PostMenuRaw = {
   title: string
   fileName: string
   order: number
-  publishedAt: number
+  publishedAt: string
 }
 
 export class PostMenu {
   title: string
   fileName: string
   order: number
-  publishedAt: number
+  publishedAt: string
   filePath: string
   parentPath: string
 
@@ -35,7 +35,7 @@ export class PostMenu {
     ins.title = s?.title || ''
     ins.fileName = s?.fileName || ''
     ins.order = s?.order || 1
-    ins.publishedAt = s?.publishedAt || 0
+    ins.publishedAt = s?.publishedAt || ''
     ins.filePath = s?.filePath || ''
     ins.parentPath = s?.parentPath || ''
     return ins

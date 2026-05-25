@@ -44,9 +44,13 @@ onBeforeMount(async () => {
   try {
     mode.value = (route.query.mode as 'CREATE' | 'EDIT') || 'CREATE'
     if (mode.value === 'CREATE') {
+      postContent.value.metadata.publishedAt = new Date().toISOString()
       if (route.query.parentPath) {
         postContent.value.postInfo.parentPath = route.query.parentPath as string
       }
+      const postMenuList = await postStore.getPostMenuListByFolderPath(postContent.value.postInfo.parentPath)
+      const order = postMenuList.reduce((max, m) => Math.max(max, m.order || 0), 0) + 1
+      postContent.value.metadata.order = order
     }
     if (mode.value === 'EDIT') {
       try {
@@ -113,7 +117,7 @@ const handleSave = async () => {
       refetch: true,
       cache: 'reload',
     })
-    router.push({ path: postContent.value.postInfo.filePath })
+    router.push({ path: postContent.value.postInfo.filePath, query: { cache: 'reload' } })
   } catch (error) {
     console.error('Failed to save post data:', error)
     window.alert('Failed to save post data')
@@ -135,7 +139,7 @@ const clickDelete = async () => {
       refetch: true,
       cache: 'reload',
     })
-    await router.push({ path: postContentOrigin.value.postInfo.parentPath })
+    await router.push({ path: postContentOrigin.value.postInfo.parentPath, query: { cache: 'reload' } })
   } catch (error) {
     console.error('Failed to delete post data:', error)
     window.alert('Failed to delete post data')
@@ -152,7 +156,9 @@ const clickDelete = async () => {
       <h1 v-if="mode === 'EDIT'">
         <span>Update Post: </span>
         <span v-if="fetchLoading">Loading...</span>
-        <span v-else>{{ postContent.postInfo.filePath }}</span>
+        <a v-else @click="router.push({ path: postContent.postInfo.filePath, query: { cache: 'reload' } })">
+          {{ postContent.postInfo.filePath }}
+        </a>
       </h1>
     </header>
 

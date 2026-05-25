@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref, watch } from 'vue'
-import { RouterLink } from 'vue-router'
+import { RouterLink, useRoute } from 'vue-router'
 import { MarkdownRenderer, type TocItem } from '../../core/markdown.core'
 import { PostContent } from '../../model/post_content.model'
 import { ROUTER_NAME } from '../../router'
@@ -13,6 +13,7 @@ const props = defineProps<{
   filePath: string
 }>()
 
+const route = useRoute()
 const authStore = useAuthStore()
 const postStore = usePostStore()
 
@@ -26,7 +27,8 @@ watch(
   async (newFilePath) => {
     try {
       loading.value = true
-      postContent.value = await postStore.getPostContentByFilePath(newFilePath)
+      const cache = (route.query.cache || 'default') as RequestCache
+      postContent.value = await postStore.getPostContentByFilePath(newFilePath, { cache })
       const rendered = await MarkdownRenderer.toHtml(postContent.value.body)
       postHtml.value = rendered.html
       tocItems.value = rendered.toc

@@ -36,7 +36,8 @@ onBeforeMount(async () => {
     loading.value = true
     themeStore.applyTheme()
     const token = localStorage.getItem(LocalStorageKeys.token)
-    await Promise.all([autoLogin(), categoryStore.loadCategoryMenuTree()])
+    await categoryStore.loadCategoryMenuTree()
+    await autoLogin()
   } catch (error: any) {
     console.log('🚀 ~ MainLayout.vue:24 ~ error:', error)
     AlertStore.addError(error.message)
